@@ -1,0 +1,148 @@
+<!DOCTYPE html> 
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/lib/nouislider.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/lib/bootstrap.css') }}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/lib/plotly.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/lib/bootstrap.js') }}"></script>
+
+    <script type="text/javascript">
+        $(window).on('load',function(){
+            $('#myModal').modal('show');
+        });
+    </script>
+
+    <!-- <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script> -->
+</head>
+
+<body>
+
+    <div class="container">
+            
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+                
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+<pre>
+<h3>Exploring usability of various machine learning 
+algorithms for text classification.</h3>
+
+The goal of this project was to create a machine learning model that could distinguish what 
+tv character was speaking when given a line from a show.  The project currently uses scripts 
+from Futurama, though it may soon be expanded to include other shows.  In creating this model, 
+several different machine learning algorithms were used so that they could be compared, and 
+the best algorithm for text classification could be determined.
+
+<h5>Data Source:</h5>
+All scripts were collected from theinfosphere.org, found here: 
+<a href='https://theinfosphere.org/Episode_Transcript_Listing'>https://theinfosphere.org/Episode_Transcript_Listing</a>. 
+
+Collection was done using Splinter's Browser, found here: 
+<a href='https://splinter.readthedocs.io/en/latest/index.html'>https://splinter.readthedocs.io/en/latest/index.html</a>, 
+
+as well as BeautifulSoup, found here: 
+<a href='https://www.crummy.com/software/BeautifulSoup/'>https://www.crummy.com/software/BeautifulSoup/</a>'.
+
+The model uses all seven seasons of the show, with some exceptions being necessary due to 
+the format of the website, but none of the movies.
+
+<h5>Data Manipulation:</h5>
+The data was collected in a few different configurations.  
+    1) Number of characters:
+        The model does not use every character in the show individually.  Instead, some 
+        number of the most prevalent characters were tracked individually, while the rest 
+        of the line from the show were bucketed into an "other" category.  The data was 
+        collected with both four named characters (Fry, Leela, Bender, Professor Farnsworth) 
+        and eight named characters (the four with Hermes, Zoidberg, Zapp, and Amy added). In 
+        both datasets there was the included "other" category, leaving them at totals of 
+        five and nine possible outputs in the model.
+    
+    2) Context weight:
+        Context was added to the model by indicating what characters were present in 
+        each scene.  If a character was present the csv column with their name would 
+        be given a value.  The model was tested with context weights ranging from zero 
+        to one hundred.
+
+Below is a picture of the first six line of the show, recorded with eight named characters 
+and a context weight of one.  For each line in the two scenes represented here "Fry" and "other"
+receive a context weight of one, because each scene contains Fry and another character, but 
+not any of the eight named characters.
+
+<img src="{{ url_for('static', filename='images/context_weight_example.png') }}" alt='image of a few line of one of the csvs' style='width: 700px; height: auto;'>
+
+The algorithms used were Naive Bayesian, Random Forest, Logistic Regression, and 
+Stochastic Gradient Descent assisted Support Vector Machine (SGD/SVM).  These were 
+used in their default configurations as provided by scikit-learn, found here: 
+<a href='http://scikit-learn.org/stable/index.html'>http://scikit-learn.org/stable/index.html</a>.
+
+
+<h5>Guide to using the site:</h5>
+Once you close this modal you will be left at the first preset I have set up.  On 
+the right side of the screen you can control which preset you are viewing using the 
+"prev" and "next" buttons.  Between those is the button to reopen this README.  Under 
+the buttons will be a description of of the preset, and why it might be of some 
+interest.  Keep in mind that changing the preset will delete all graphs before creating 
+the ones relevant to that preset
+
+On the left side of the screen are the controls for each graph.  You can choose 
+any configuration there, or even delete the graph if you decide you no longer need 
+it.  At the bottom left of the screen is a button that will generate a new graph, so 
+that you can compare multiple graphs at once.
+
+In the middle of the screen are the graphs themselves.  
+They were made using Plotly.js, found here: 
+<a href='https://plot.ly/javascript/'>https://plot.ly/javascript/</a>.
+
+<h5>Thanks for checking out the project.</h5>
+GitHub: <a href='https://github.com/tslindner'>https://github.com/tslindner</a>
+Personal Site: <a href='https://tslindner.github.io/'>https://tslindner.github.io/</a>
+</pre>
+                </div>
+                
+            </div>
+        </div>
+            
+    </div>
+
+</div>
+        
+        
+
+    <div id='main'>
+    </div>
+
+    <button id='newGraph' class='btn btn-success' style='position: fixed; bottom: 0px; left: 0px; width: 100px; height: 60px;'>New Graph</button>
+
+    <div id='sideBar' style='position: fixed; width: 300px; height: 100vh; display: block; right: 0px; top: 0px; background: rgb(220, 220, 220);'>
+        <div id='slider' style='margin-top: 20px; margin-left: 20px; margin-right: 20px; margin-bottom: 10px;'></div>
+        <button id='prevButton' class='btn btn-light' style='width: 85px; background: rgb(180, 180, 180); margin-left: 20px;'>Prev</button>
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" style='width: 85px;'>README</button>
+        <button id='nextButton' class='btn btn-light' style='width: 85px; background: rgb(180, 180, 180);'>Next</button>
+        <div id='sideBarText' style='margin: 10px;'></div>
+
+
+    </div>
+
+    <script src="{{ url_for('static', filename='js/lib/nouislider.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/logic.js') }}"></script>
+    
+
+</body>
+
+</html>
