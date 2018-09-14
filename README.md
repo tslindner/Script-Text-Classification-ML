@@ -1,38 +1,8 @@
-Intro:
-    Data source:
-        Manipulation:
-            NumChar:
-                Example of a row:
-            Context Weight:
-                Example of a row:
-    Methods:
-        Various algs:
-        No additional parameters:
+# Real-Estate-Visualization-DC
+GWU Project due 2018-06-30 (Tim Lindner, Arjun Maniyar, Justin Neuda, Hasan Khalid)
 
-Guide:
-    Website directions:
-        Menu to the left:
-            Delete With red button:
-            Create with green button:
-        Charts in the middle:
-            Plotly:
-                Zoom:
-        Presets to the right:
-            Preset configurations:
-                Everything goes away when you use these:
-        Reopen this guide:
-            Button somewhere (TBD):
+I've included the basic flask directory stucture (static, Modules, templates).
 
-Interesting findings:
-    Overall:
-        SGD/SVM best but most inconsistent:
-        Random Forest best consistent result:
-        Naive Bayesian worst but most consistent:
-        SGD/SVM does worse with 8char than 4char:
+I also made work in progress directories, where each of us can share our work without getting in each other's ways.  I think this will be really useful once we get to the html and javascript portions of the project.  I think we'll probably split those up and each work on our own sections then combine them, hopefully in person.
 
-        Differences between 4char and 8char:
-            4char better at low min lengths, same at high:
-        Differences based on min length:
-            10 better than 20 for 8ch:
-            10 better than 30 better than 20 for 4ch:
-        
+It might not help at all.  Who knows.
