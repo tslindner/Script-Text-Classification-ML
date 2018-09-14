@@ -72,8 +72,14 @@ The data was collected in a few different configurations.
         and eight named characters (the four with Hermes, Zoidberg, Zapp, and Amy added). In 
         both datasets there was the included "other" category, leaving them at totals of 
         five and nine possible outputs in the model.
+
+    2) Minimum line length:
+        Many line are unhelpful because they have no distinguishing characteristics.  These are 
+        typically the shorter lines, e.g. "Yes", "Hi", or "Thanks".  To account for this 
+        a few different minimums were put into place, any lines shorter than that minimum 
+        were dropped from the dataset.  Minimum lengths of 10, 20, 30, 40, and 50 were used.
     
-    2) Context weight:
+    3) Context weight:
         Context was added to the model by indicating what characters were present in 
         each scene.  If a character was present the csv column with their name would 
         be given a value.  The model was tested with context weights ranging from zero 
